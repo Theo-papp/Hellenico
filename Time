@@ -1,0 +1,70 @@
+#include <iostream>    
+#include <fstream>    
+using namespace std;    
+int main()    
+{    
+    ifstream in ("time.in");    
+    ofstream out("time.out");    
+    int h,m,s,r_h,r_m,r_s;     
+    char p = ':';    
+    in >> h >> p >> m >> p >> s;    
+    if(s>=30){    
+        r_s=(s*2)-60;    
+        if(m>=30){    
+            r_m=(m*2)-60+1;    
+            r_h=(h*2)+1;    
+        }    
+        if(m<30){    
+            r_m=(m*2)+1;    
+            r_h=(h*2);    
+        }    
+    }    
+    if(s<30){    
+        r_s=s*2;    
+        if(m>=30){    
+            r_m=(m*2)-60;    
+            r_h=(h*2)+1;    
+        }    
+        if(m<30){    
+            r_m=m*2;    
+            r_h=h*2;    
+        }    
+    }    
+    if(r_s<10){  
+        if(r_m<10){  
+            if(r_h<10){  
+                out << "0" << r_h << p << "0" << r_m << p << "0" << r_s << endl;    
+            }  
+            if(r_h>=10){  
+                out << r_h << p << "0" << r_m << p << "0" << r_s << endl;  
+            }  
+        }  
+        if(r_m>=10){  
+            if(r_h<10){  
+                out << "0" << r_h << p << r_m << p << "0" << r_s << endl;    
+            }  
+            if(r_h>=10){  
+                out << r_h << p << r_m << p << "0" << r_s << endl;    
+            }  
+        }   
+    }  
+    if(r_s>=10){  
+       if(r_m<10){  
+            if(r_h<10){  
+                out << "0" << r_h << p << "0" << r_m << p <<  r_s << endl;    
+            }  
+            if(r_h>=10){  
+                out << r_h << p << "0" << r_m << p << r_s << endl;  
+            }  
+        }  
+        if(r_m>=10){  
+            if(r_h<10){  
+                out << "0" << r_h << p << r_m << p <<  r_s << endl;    
+            }  
+            if(r_h>=10){  
+                out << r_h << p << r_m << p <<  r_s << endl;    
+            }  
+        }  
+    }  
+    return 0;    
+}    
