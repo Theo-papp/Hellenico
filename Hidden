@@ -1,0 +1,20 @@
+#include "hiddenlib.h"  
+using namespace std;  
+int main(){  
+    int end = getN();  
+    int beg = 0;  
+    if(end == 1){  
+        if(ishidden(1)) return 0;  
+    }  
+    while ( 1 ){  
+        int middle = (beg + end) / 2;  
+        if(compare(beg,end) == 1) end = middle;  
+        else if(compare(beg,end) == 0){  
+            if(ishidden(middle)) break;  
+            if(ishidden(middle - 1)) break;  
+            if(ishidden(middle + 1)) break;  
+        }  
+        else if(compare(beg,end) == -1) beg = middle + 1;  
+    }  
+    return 0;  
+}  
