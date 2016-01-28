@@ -1,0 +1,38 @@
+#include <iostream>  
+#include <fstream>  
+#include <cstdlib>  
+#include <stack>  
+using namespace std;  
+int cmp(const void *a, const void*b){  
+    int one = *(int*)a;  
+    int two = *(int*)b;  
+    if(one > two) return 1;  
+    if(two > one) return -1;  
+    return 0;  
+}  
+int main(){  
+    ifstream cin("acropolis.in");  
+    ofstream cout("acropolis.out");  
+    int n,top,temp,prev;  
+    cin >> n;  
+    stack <int> pos;  
+    int p[n];  
+    for(int i=0; i<n; i++) cin >> p[i];  
+    for(int i=0; i<n; i++){  
+        if(p[i] == 1) pos.push(i);  
+    }  
+    qsort(p,n,sizeof(int),cmp);  
+    while(!pos.empty()){  
+        top = pos.top();  
+        temp = p[top];  
+        for(int i=top; i>0; i--){  
+            prev = p[i - 1];  
+            p[i - 1] = temp;  
+            temp = prev;  
+        }  
+        p[top] = 1;  
+        pos.pop();  
+    }  
+    for(int i=0; i<n; i++) cout << p[i] << endl;  
+    return 0;  
+}  
