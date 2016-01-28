@@ -1,0 +1,20 @@
+#include <iostream>  
+#include <fstream>  
+#include <algorithm>  
+  
+using namespace std;  
+  
+int main() {  
+    ifstream cin("tickets.in");  
+    ofstream cout("tickets.out");  
+    int A, B, C, D, N;  
+    cin >> N >> A >> B >> C >> D;  
+    int cost = 10 * N;  
+    int a = max(N,A),b = max(N,B),c = max(N,C),d = max(N,D);  
+    cost = min(cost , 9 * a);  
+    cost = min(cost , 8 * b);  
+    cost = min(cost , 7 * c);  
+    cost = min(cost , 5 * d);  
+    cout << cost << endl;  
+    return 0;  
+}  
