@@ -1,0 +1,28 @@
+#include <algorithm>    
+#include <fstream>  
+#include <iostream>  
+#include <vector>    
+#include <string>   
+using namespace std;  
+vector <string> cars;  
+int main(){  
+    ifstream cin("boat.in");  
+    ofstream cout("boat.out");  
+    int n;  
+    cin >> n;  
+    string str;  
+    char car[42];  
+    int x[n],y[n];  
+    vector <string>::iterator it;    
+    for(int i = 0; i < n; ++i){  
+        cin >> x[i] >> y[i];  
+        for(int j = 0; j < x[i]; ++j) cars.pop_back();  
+        for(int j = 0; j < y[i]; ++j){  
+            cin >> car;  
+            cars.push_back(car);  
+        }  
+    }  
+    sort(cars.begin(), cars.end());  
+    for ( it = cars.begin(); it != cars.end(); ++it ) cout << (*it).c_str() << endl;    
+    return 0;  
+}  
