@@ -1,0 +1,36 @@
+#include <iostream>  
+#include <fstream>  
+using namespace std;  
+bool IsPrime(int a){  
+    bool prime = true;  
+    for(int i=2; i<a; i++){  
+        if((a % i == 0) && (i!=a)){  
+            prime = false;  
+            break;  
+        }  
+    }  
+    return prime;  
+}  
+int main(){  
+    ifstream cin("goldbach.in");  
+    ofstream cout("goldbach.out");  
+    int num;  
+    cin >> num;  
+    bool done;  
+    int a = 2,b = 2;  
+    b = num - 1;  
+    while (!done){  
+        if(IsPrime(a)){  
+            b = num - a;  
+            if(IsPrime(b)){  
+                if(a + b == num){  
+                    cout << a << " " << b << endl;  
+                    return 0;  
+                }  
+                if(a + b > num) b--;  
+                else a++;  
+            }  
+        }  
+        a++;  
+    }  
+}  
