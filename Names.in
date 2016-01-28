@@ -1,0 +1,42 @@
+#include <iostream>
+#include <fstream>
+#include <cstring>    
+#include <cstdlib>    
+using namespace std;    
+void minChar( char name[ 21 ], char target[ 21 ] ) {    
+    int len = strlen( name ),i;  
+    char newname[ 21 ];    
+    strcpy( newname, name );    
+    char last;    
+    strcpy( target, name );    
+    int counter = 0;    
+    while ( counter < len ) {    
+        last = newname[ len - 1 ];    
+        for ( i = len - 1; i > 0; --i ) newname[ i ] = newname[ i - 1 ];       
+        newname[ 0 ] = last;    
+        ++counter;    
+        if ( strcmp( newname, target ) < 0 )strcpy( target, newname );    
+    }    
+}    
+int main() {    
+    ifstream cin("names.in");
+    ofstream cout("names.out"); 
+    int n;    
+    int i;    
+    char temp[ 21 ];    
+    char min[ 21 ];    
+    int key = 0;    
+    cin >> n;
+    char names[ n ][ 21 ];    
+    for ( i = 0; i < n; ++i ) cin >> names[i];
+    minChar( names[ 0 ], min );    
+    for ( i = 0; i < n; ++i ) {    
+        minChar( names[ i ], temp );    
+        if ( strcmp( temp, min ) < 0 ) {    
+            strcpy( min, temp );    
+            key = i;    
+        }    
+    }    
+    cout << names[key];    
+    return 0;    
+}  
